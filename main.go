@@ -18,7 +18,6 @@ import (
 func main() {
 	signature := flag.String("signature", "auto", "Signature to scan")
 	pid := flag.String("pid", "auto", "ProcessID")
-	//updateTimeAs := flag.Int("update", 100, "How fast should we update the values? (in milliseconds)")
 	flag.Parse()
 
 	maps, err := readMaps(int(cast.ToInt(pid)))
@@ -26,7 +25,7 @@ func main() {
 		log.Fatalln("Please provide process/Process error!")
 
 	}
-	mem, err := os.Open(fmt.Sprintf("/proc/%d/mem", cast.ToInt(pid))) //TODO: Should only read the mem once
+	mem, err := os.Open(fmt.Sprintf("/proc/%d/mem", cast.ToInt(pid)))
 	if err != nil {
 		fmt.Println("Coud not open /proc")
 
